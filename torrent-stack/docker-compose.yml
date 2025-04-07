@@ -1,0 +1,63 @@
+version: "3"
+services:
+  gluetun:
+    image: qmcgaw/gluetun
+    container_name: gluetun
+    # Hostname to use for container, required in some instances for the rest of the stack to each other endpoints
+    hostname: gluetun
+    # line above must be uncommented to allow external containers to connect.
+    # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/connect-a-container-to-gluetun.md#external-container-to-gluetun
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun:/dev/net/tun
+    ports:
+      - 6881:6881
+      - 6881:6881/udp
+      - 8085:8085 # qbittorrent
+      - 9117:9117 # Jackett
+      - 8989:8989 # Sonarr
+      - 9696:9696 # Prowlarr
+    volumes:
+      - /home/tushgaurav/torrent-stack/gluetun:/gluetun
+    environment:
+      # See https://github.com/qdm12/gluetun-wiki/tree/main/setup#setup
+      - VPN_SERVICE_PROVIDER=private internet access
+      - OPENVPN_USER=username
+      - OPENVPN_PASSWORD=password
+      - TZ=Europe/London
+      - SERVER_REGIONS=US Texas, AU Melbourne, AU Sydney, Indonesia
+      # Server list updater
+      # See https://github.com/qdm12/gluetun-wiki/blob/main/setup/servers.md#update-the-vpn-servers-list
+      - UPDATER_PERIOD=24h
+
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent
+    container_name: qbittorrent
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - WEBUI_PORT=8085
+    volumes:
+      - /home/tushgaurav/torrent-stack/qbittorrent:/config
+      - /home/tushgaurav/torrent-stack/qbittorrent/downloads:/downloads
+    depends_on:
+      - gluetun
+    restart: always
+
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    network_mode: "service:gluetun"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - AUTO_UPDATE=true #optional
+      - RUN_OPTS= #optional
+    volumes:
+      - /home/tushgaurav/torrent-stack/jackett/data:/config
+      - /home/tushgaurav/torrent-stack/jackett/blackhole:/downloads
+    restart: unless-stopped
