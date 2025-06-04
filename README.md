@@ -5,6 +5,9 @@ Homelab is a laboratory at home where you can self-host, experiment with new tec
 This repo includes my homelab stacks, templates, and configurations files. This is a work in progress, I will be adding more stuff here.
 
 ## Overview
+### Network Diagram
+![Network Diagram](./images/network_diagram.png)
+
 ### Hardware
 
 #### Intel NUC
