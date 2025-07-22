@@ -138,3 +138,20 @@ This is a testing server. I currently run my Minecraft server on this machine.
         <td>Primary database</td>
     </tr> 
 </table>
+
+
+### Architecture
+
+Most of my services are running on my Proxmox server. 
+
+#### Proxmox
+
+I have a few VMs running on my Proxmox server. For running individual services, I use Docker containers.
+
+![Proxmox Screenshot](./images/proxmox_datacenter.png)
+
+The most important VM is the `chai` (ID: 201), It runs all the critical containers. It's a 8 core 12 GB RAM VM, I have allocated 64GB of disk space to it. This VM is running Ubuntu Server 24.04 LTS with Docker installed.
+
+For managing my containers. I use [Portainer](https://www.portainer.io/). It's a simple UI for managing my containers. 
+
+![Portainer Screenshot](./images/portainer.png)
