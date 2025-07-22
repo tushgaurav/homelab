@@ -5,11 +5,11 @@ global:
 
 alerting:
   alertmanagers:
-  - static_configs:
-    - targets: []
-    scheme: http
-    timeout: 10s
-    api_version: v1
+    - static_configs:
+        - targets: []
+      scheme: http
+      timeout: 10s
+      api_version: v1
 
 scrape_configs:
   - job_name: prometheus
@@ -20,4 +20,16 @@ scrape_configs:
     scheme: http
     static_configs:
       - targets:
-        - localhost:9090
+          - localhost:9090
+
+  - job_name: rpi_server
+    static_configs:
+      - targets: ["10.1.1.167:9100"]
+
+  - job_name: proxmox_node
+    static_configs:
+      - targets: ["10.1.1.2:9100"]
+
+  - job_name: adguard
+    static_configs:
+      - targets: ["10.1.1.167:9618"]
