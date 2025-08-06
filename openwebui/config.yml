@@ -34,6 +34,11 @@ model_list:
       model: claude-4-opus-20250514
       api_key: os.environ/ANTHROPIC_API_KEY
 
+  - model_name: Claude Opus 4.1
+    litellm_params:
+      model: claude-opus-4-1-20250805
+      api_key: os.environ/ANTHROPIC_API_KEY
+
   - model_name: gpt-4o
     litellm_params:
       model: gpt-4o
@@ -54,10 +59,33 @@ model_list:
       model: o3-mini
       api_key: os.environ/OPENAI_API_KEY
 
+  - model_name: gpt-image-1
+    litellm_params:
+      model: gpt-image-1
+      api_key: os.environ/OPENAI_API_KEY
+
   - model_name: o3
     litellm_params:
       model: o3
       api_key: os.environ/OPENAI_API_KEY
+
+  - model_name: GPT OSS 120B
+    litellm_params:
+      model: openrouter/openai/gpt-oss-120b
+      api_key: os.environ/OPENROUTER_API_KEY
+      drop_params: true
+
+  - model_name: GPT OSS 20B
+    litellm_params:
+      model: openrouter/openai/gpt-oss-20b
+      api_key: os.environ/OPENROUTER_API_KEY
+      drop_params: true
+
+  - model_name: Horizon Beta
+    litellm_params:
+      model: openrouter/openrouter/horizon-beta
+      api_key: os.environ/OPENROUTER_API_KEY
+      drop_params: true
 
   - model_name: (OpenRouter) Llama 3.1 405B Instruct
     litellm_params:
@@ -96,6 +124,18 @@ model_list:
       model: kimi-k2-0711-preview
       api_base: https://api.moonshot.ai/v1/
       api_key: os.environ/MOONSHOT_API_KEY
+    model_info:
+      input_cost_per_token: 0.00000060
+      output_cost_per_token: 0.00000250
+
+  - model_name: GLM-4.5
+    litellm_params:
+      model: glm-4.5
+      api_base: https://api.z.ai/api/paas/v4/
+      api_key: os.environ/ZAI_API_KEY
+    model_info:
+      input_cost_per_token: 0.0000006
+      output_cost_per_token: 0.0000022
 
 general_settings:
   master_key: os.environ/MASTER_KEY
