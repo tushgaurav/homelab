@@ -79,7 +79,7 @@ This is a testing server. I currently run my Minecraft server on this machine.
         <td>Systems monitoring and alerting toolkit</td>
     </tr>
     <tr>
-        <td><img width="32" src="https://grafana.com/static/img/menu/grafana2.svg"></td>
+        <td><img width="32" src="https://avatars.githubusercontent.com/u/7195757?s=200&v=4"></td>
         <td><a href="https://grafana.com">Grafana</a></td>
         <td>Observability platform</td>
     </tr>
@@ -92,6 +92,16 @@ This is a testing server. I currently run my Minecraft server on this machine.
         <td><img width="32" src="https://avatars.githubusercontent.com/u/8361145?s=200&v=4"></td>
         <td><a href="https://adguard.com/en/adguard-home/overview.html">AdGuard Home</a></td>
         <td>Primary DNS and ads blocker</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://grafana.com/static/img/logos/logo-loki.svg"></td>
+        <td><a href="https://grafana.com/oss/loki/">Grafana Loki</a></td>
+        <td>Log aggregation system</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://avatars.githubusercontent.com/u/5713248?s=200&v=4"></td>
+        <td><a href="https://www.influxdata.com/products/influxdb/">InfluxDB</a></td>
+        <td>Time series database for metrics and events</td>
     </tr>
 </table>
 
@@ -137,6 +147,21 @@ This is a testing server. I currently run my Minecraft server on this machine.
         <td><a href="https://www.postgresql.org/">PostgreSQL</a></td>
         <td>Primary database</td>
     </tr> 
+    <tr>
+        <td><img width="32" src="https://avatars.githubusercontent.com/u/185921483?s=200&v=4"></td>
+        <td><a href="https://mosquitto.org/">Eclipse Mosquitto</a></td>
+        <td>MQTT message broker for IoT devices</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://avatars.githubusercontent.com/u/5713248?s=200&v=4"></td>
+        <td><a href="https://www.influxdata.com/products/influxdb/">InfluxDB 3 Core</a></td>
+        <td>Time series database for storing metrics and sensor data</td>
+    </tr>
+    <tr>
+        <td><img width="32" src="https://avatars.githubusercontent.com/u/5713248?s=200&v=4"></td>
+        <td><a href="https://github.com/InfluxCommunity/influxdb3-ui">InfluxDB Explorer</a></td>
+        <td>Web UI for viewing and querying InfluxDB data</td>
+    </tr>
 </table>
 
 
