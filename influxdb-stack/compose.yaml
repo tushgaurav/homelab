@@ -1,0 +1,56 @@
+name: influxdb3
+services:
+  influxdb3-core:
+    container_name: influxdb3-core
+    restart: unless-stopped
+    user: "0:0"
+    image: influxdb:3-core
+    ports:
+      - 8181:8181
+    command:
+      - influxdb3
+      - serve
+      - --node-id=node0
+      - --object-store=file
+      - --data-dir=/var/lib/influxdb3/data
+      - --plugin-dir=/var/lib/influxdb3/plugins
+    volumes:
+      - type: bind
+        source: ~/.influxdb3/core/data
+        target: /var/lib/influxdb3/data
+      - type: bind
+        source: ~/.influxdb3/core/plugins
+        target: /var/lib/influxdb3/plugins
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.influxdb.rule=Host(`influxdb.dev.infra.orangewood.co`)
+      - traefik.http.routers.influxdb.entrypoints=websecure
+      - traefik.http.routers.influxdb.tls=true
+      - traefik.http.routers.influxdb.tls.certresolver=websecure
+    networks:
+      - frontend
+
+  influxdb3-explorer:
+    image: influxdata/influxdb3-ui:1.4.0
+    container_name: influxdb3-explorer
+    pull_policy: always
+    command: ["--mode=admin"]
+    ports:
+      - "8888:80"
+    volumes:
+      - ./db:/db:rw
+      - ./config:/app-root/config:ro
+    environment:
+      SESSION_SECRET_KEY: ${SESSION_SECRET_KEY:-changeme123456789012345678901234}
+    restart: unless-stopped
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.influxdb-explorer.rule=Host(`explorer.dev.infra.orangewood.co`)
+      - traefik.http.routers.influxdb-explorer.entrypoints=websecure
+      - traefik.http.routers.influxdb-explorer.tls=true
+      - traefik.http.routers.influxdb-explorer.tls.certresolver=websecure
+    networks:
+      - frontend
+networks:
+    frontend:
+        external: true
