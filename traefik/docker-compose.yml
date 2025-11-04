@@ -1,12 +1,15 @@
 services:
-  reverse-proxy:
-    image: traefik:v3.4.0
+  traefik:
+    image: traefik:v3.5
     container_name: traefik
     ports:
       - "80:80"
+      - "443:443"
       - "8080:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ./config/traefik.yaml:/etc/traefik/traefik.yaml:ro
+      - ./data/certs/:/var/traefik/certs/:rw
     networks:
       - frontend
     restart: unless-stopped

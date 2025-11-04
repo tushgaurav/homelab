@@ -1,12 +1,26 @@
-version: "3.8"
+version: '3.8'
 services:
   grafana:
-    image: grafana/grafana
+    image: grafana/grafana-enterprise
     container_name: grafana
     restart: unless-stopped
+    environment:
+      # increases the log level from info to debug
+      - GF_LOG_LEVEL=debug
     ports:
-     - '3000:3000'
+      - '3000:3000'
     volumes:
-      - grafana-storage:/var/lib/grafana
+      - 'grafana_storage:/var/lib/grafana'
+    networks:
+      - frontend
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.grafana.rule=Host(`grafana.dev.infra.orangewood.co`)
+      - traefik.http.routers.grafana.entrypoints=websecure
+      - traefik.http.routers.grafana.tls=true
+      - traefik.http.routers.grafana.tls.certresolver=websecure
 volumes:
-  grafana-storage: {}
+  grafana_storage: {}
+networks:
+  frontend:
+    external: true
