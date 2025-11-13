@@ -180,3 +180,11 @@ The most important VM is the `chai` (ID: 201), It runs all the critical containe
 For managing my containers. I use [Portainer](https://www.portainer.io/). It's a simple UI for managing my containers. 
 
 ![Portainer Screenshot](./images/portainer.png)
+
+## Usefull Resources
+
+[Docker Install Script](https://github.com/docker/docker-install)
+```
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+``` 
