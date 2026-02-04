@@ -33,6 +33,13 @@ services:
   unifi-db:
     image: arm64v8/mongo:4.4.18
     container_name: unifi-db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=viQN069G7nf17ZITbbeM
+      - MONGO_USER=unifi
+      - MONGO_PASS=viQN069G7nf17ZITbbeM
+      - MONGO_DBNAME=unifi
+      - MONGO_AUTHSOURCE=admin
     volumes:
       - ./unifi-db:/data/db
       - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
